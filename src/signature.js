@@ -19,7 +19,7 @@ angular.module('signature').directive('signaturePad', ['$window',
     return {
       restrict: 'EA',
       replace: true,
-      template: '<canvas class="{{class}}" data-ng-mouseup="updateModel()"></canvas>',
+      template: '<canvas class="signature-canvas" data-ng-mouseup="updateModel()"></canvas>',
       scope: {
         accept: '=',
         clear: '=',
@@ -63,7 +63,6 @@ angular.module('signature').directive('signaturePad', ['$window',
       ],
       link: function (scope, element) {
         var canvas = element[0];
-        scope.class += ' signature-canvas ';
         scope.signaturePadOptions = scope.signaturePadOptions || {};
         scope.signaturePad = new SignaturePad(canvas, scope.signaturePadOptions);
 
