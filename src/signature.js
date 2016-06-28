@@ -61,7 +61,7 @@ angular.module('signature').directive('signaturePad', ['$window',
         }
       ],
       link: function (scope, element) {
-        canvas = element;
+        canvas = element[0];
         scope.signaturePadOptions = scope.signaturePadOptions || {};
         scope.signaturePad = new SignaturePad(canvas, scope.signaturePadOptions);
 
@@ -70,7 +70,6 @@ angular.module('signature').directive('signaturePad', ['$window',
         }
 
         scope.onResize = function() {
-          var canvas = element;
           var ratio =  Math.max($window.devicePixelRatio || 1, 1);
           canvas.width = canvas.offsetWidth * ratio;
           canvas.height = canvas.offsetHeight * ratio;
