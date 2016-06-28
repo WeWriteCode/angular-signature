@@ -13,13 +13,11 @@ angular.module('signature').directive('signaturePad', ['$window',
     return {
       restrict: 'EA',
       replace: true,
-      template: '<div class="signature" ng-style="{height: height + \'px\', width: width + \'px\'}"><canvas ng-mouseup="updateModel()"></canvas></div>',
+      template: '<canvas class="signature-canvas" ng-mouseup="updateModel()"></canvas>',
       scope: {
         accept: '=',
         clear: '=',
-        dataurl: '=',
-        height: '@',
-        width: '@'
+        dataurl: '='
       },
       controller: [
         '$scope',
@@ -41,7 +39,7 @@ angular.module('signature').directive('signaturePad', ['$window',
           $scope.updateModel = function () {
             var result = $scope.accept();
             $scope.dataurl = result.isEmpty ? undefined : result.dataUrl;
-          }
+          };
 
           $scope.clear = function () {
             $scope.signaturePad.clear();
@@ -56,7 +54,7 @@ angular.module('signature').directive('signaturePad', ['$window',
         }
       ],
       link: function (scope, element) {
-        canvas = element.find('canvas')[0];
+        canvas = element;
         scope.signaturePad = new SignaturePad(canvas);
 
         if (scope.signature && !scope.signature.$isEmpty && scope.signature.dataUrl) {
@@ -64,12 +62,12 @@ angular.module('signature').directive('signaturePad', ['$window',
         }
 
         scope.onResize = function() {
-          var canvas = element.find('canvas')[0];
+          var canvas = element;
           var ratio =  Math.max($window.devicePixelRatio || 1, 1);
           canvas.width = canvas.offsetWidth * ratio;
           canvas.height = canvas.offsetHeight * ratio;
           canvas.getContext("2d").scale(ratio, ratio);
-        }
+        };
 
         scope.onResize();
 
