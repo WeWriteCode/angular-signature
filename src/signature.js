@@ -17,7 +17,8 @@ angular.module('signature').directive('signaturePad', ['$window',
       scope: {
         accept: '=',
         clear: '=',
-        dataurl: '='
+        dataurl: '=',
+        signaturePadOptions: '='
       },
       controller: [
         '$scope',
@@ -55,7 +56,8 @@ angular.module('signature').directive('signaturePad', ['$window',
       ],
       link: function (scope, element) {
         canvas = element;
-        scope.signaturePad = new SignaturePad(canvas);
+        scope.signaturePadOptions = scope.signaturePadOptions || {};
+        scope.signaturePad = new SignaturePad(canvas, scope.signaturePadOptions);
 
         if (scope.signature && !scope.signature.$isEmpty && scope.signature.dataUrl) {
           scope.signaturePad.fromDataURL(scope.signature.dataUrl);
