@@ -3,6 +3,12 @@
  * Copyright (c) 2015 ; Licensed MIT
  */
 
+/*
+ * Forked:
+ * https://github.com/WeWriteCode/angular-signature
+ * Copyright (c) 2016 ; Licensed MIT
+ */
+
 angular.module('signature', []);
 
 angular.module('signature').directive('signaturePad', ['$window',
