@@ -9,11 +9,11 @@ angular.module('signature').directive('signaturePad', ['$window',
   function ($window) {
     'use strict';
 
-    var signaturePad, canvas, element, EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
+    var canvas, EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
     return {
       restrict: 'EA',
       replace: true,
-      template: '<canvas class="signature-canvas" ng-mouseup="updateModel()"></canvas>',
+      template: '<canvas class="signature-canvas" data-ng-mouseup="updateModel()"></canvas>',
       scope: {
         accept: '=',
         clear: '=',
