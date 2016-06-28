@@ -80,6 +80,3 @@ angular.module('signature').directive('signaturePad', ['$window',
     };
   }
 ]);
-
-// Backward compatibility
-angular.module('ngSignaturePad', ['signature']);
